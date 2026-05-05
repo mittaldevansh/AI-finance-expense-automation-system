@@ -1,0 +1,318 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1ejlq1bdPKAtbe6Q_GDb-1JirL4mYWinm6nPBIeUuV3U",
+          "mode": "list",
+          "cachedResultName": "Expense Tracker Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ejlq1bdPKAtbe6Q_GDb-1JirL4mYWinm6nPBIeUuV3U/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1233165293,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ejlq1bdPKAtbe6Q_GDb-1JirL4mYWinm6nPBIeUuV3U/edit#gid=1233165293"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -448
+      ],
+      "id": "83e92d3a-24e7-4b26-a0d8-311b7b8b9c7d",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "1Rx6dwjPpYpMQ9zj",
+          "name": "Google Sheets Trigger OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9efd9fbe-a9ae-4272-a40b-35d48192dcb1",
+              "name": "Name",
+              "value": "={{ $json['Employee Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "dcde9023-27e6-46a0-98a9-8ceef5c117ea",
+              "name": "Department",
+              "value": "={{ $json['Department '] }}",
+              "type": "string"
+            },
+            {
+              "id": "45616eb7-9f25-4592-b8b6-87185a2066c8",
+              "name": "Date",
+              "value": "={{ $json['Expense Date'] }}",
+              "type": "string"
+            },
+            {
+              "id": "eb1e4894-c099-4b19-ac1e-580bb512d9a7",
+              "name": "Category",
+              "value": "={{ $json.Category }}",
+              "type": "string"
+            },
+            {
+              "id": "4f0dffcc-878f-4409-8ea6-a91059dd4901",
+              "name": "Amount",
+              "value": "={{ $json['Amount '] }}",
+              "type": "number"
+            },
+            {
+              "id": "5b95840e-f8b4-452b-8265-43daa1fdd57d",
+              "name": "Remarks",
+              "value": "={{ $json.Remarks }}",
+              "type": "string"
+            },
+            {
+              "id": "a1a9d266-686e-4d4c-bf21-8be368659256",
+              "name": "Email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -304,
+        -384
+      ],
+      "id": "f68f4c4c-64c2-4a1e-9bc9-8f9625a6232a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "sendTo": "devansh2555.mba25fin@chitkara.edu.in",
+        "subject": "🚨High Expense Alert‼️",
+        "message": "=<p>A new expense has been submitted.</p>  <p> Employee: {{$json.Name}}<br> Department: {{$json.Department}}<br> Amount: {{$json.Amount}}<br> Category: {{$json.Category}}<br> Date: {{$json.Date}}<br> Remarks: {{$json.Remarks}} </p>  <p> Regards,<br> Expense Automation System </p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        -352
+      ],
+      "id": "0be3c070-edab-4aec-925a-b113f04e5bb0",
+      "name": "Send a message",
+      "webhookId": "667d7f7a-77cf-4a00-9fd1-d993b66bb544",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "taHEtHa89YpHTOxC",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "devansh2555.mba25fin@chitkara.edu.in",
+        "subject": "Normal Expense Notification",
+        "message": "=<p>A new expense has been submitted.</p>  <p> Employee: {{$json.Name}}<br> Department: {{$json.Department}}<br> Amount: {{$json.Amount}}<br> Category: {{$json.Category}}<br> Date: {{$json.Date}}<br> Remarks: {{$json.Remarks}} </p>  <p> Regards,<br> Expense Automation System </p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        -144
+      ],
+      "id": "62b60311-f7fe-4b09-98b8-cfc366317387",
+      "name": "Send a message1",
+      "webhookId": "1aae841e-b42b-4e42-8c22-c0a79273afff",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "taHEtHa89YpHTOxC",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "devansh2555.mba25fin@chitkara.edu.in",
+        "subject": "⚠️ Warning : Unauthorized Submission Detected",
+        "message": "=<p>A form was submitted using a non-official email.</p>  <p> Email: {{$json[\"Email\"]}}<br> Employee: {{$json.Name}}<br> Department: {{$json.Department}}<br> Amount: {{$json.Amount}}<br> Category: {{$json.Category}}<br> Date: {{$json.Date}}<br> Remarks: {{$json.Remarks}} </p>  <p> Regards,<br> Expense Automation System </p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        -224
+      ],
+      "id": "98dda730-5d49-4be1-bb46-cb09c6c37995",
+      "name": "Send a message2",
+      "webhookId": "12c4e099-1331-449d-9018-b3f8eb6fc7f8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "taHEtHa89YpHTOxC",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "071c9ca2-0214-48df-b1d5-c202a5c0afcf",
+              "leftValue": "={{ $json.Email }}",
+              "rightValue": "@chitkara.edu.in",
+              "operator": {
+                "type": "string",
+                "operation": "endsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        -336
+      ],
+      "id": "79462378-1017-419f-afe3-3eabd53f4d38",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fb2d71a7-6e27-47c4-adfb-20c4afb5b066",
+              "leftValue": "={{ $json.Amount }}",
+              "rightValue": 5000,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        160,
+        -400
+      ],
+      "id": "cc15dca5-db20-4b58-a516-fd24860f8faf",
+      "name": "If2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "ab6bbc58-846b-4479-b141-423d07cef1dd",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dbf9f75270c4100110bb12954396b08e85a64057211fe3e821f495ab4b2dca4d"
+  },
+  "id": "iMdCt9U3D6Erbc3o",
+  "tags": []
+}
