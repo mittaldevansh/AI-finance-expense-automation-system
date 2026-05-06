@@ -166,6 +166,6 @@ This project shows how automation and AI-driven workflows can transform traditio
 ## 👩‍💼 Author
 
 **Devansh Mittal**
-MBA Finance Student | AI in Finance Practitioner
+ | MBA Finance Student | AI in Finance Practitioner
 
 ---
