@@ -102,6 +102,12 @@ Finance-Automation-Project/
 
 ---
 
+### 5. Power BI Dashboard
+
+![Power BI Dashboard](https://github.com/mittaldevansh/AI-finance-expense-automation-system/blob/main/powerbi_dashboard.png)
+
+---
+
 ## ⭐ Key Features
 
 * Automated expense data capture
